@@ -10,7 +10,8 @@ public class GamePanel extends JPanel {
     public int sHeight;
     /** Wysokość paska menu*/
     public int barHeight;
-
+    /** Obiekt pierwszego planu*/
+    private Character character;
     /**
      * Konstruktor klasy pola graficznego gry.
      * Ustawienia początkowe oraz ładowanie zasobów
@@ -23,6 +24,8 @@ public class GamePanel extends JPanel {
         this.sWidth = width;
         this.sHeight = height;
         barHeight = 50;
+
+        character = new Character(500,500);
     }
 
     /**
@@ -38,5 +41,6 @@ public class GamePanel extends JPanel {
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // Narysuj tło
         g.drawImage(Data.bgImage, 0, 0, null);
+        g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
     }
 }

@@ -7,9 +7,11 @@ public class Data {
 
     /**  Obraz tła   */
     public static Image bgImage;
+    public static Image characterImage;
 
     public static void loadInitialImages() {
         bgImage = loadImage("img/tlo.png");
+        characterImage = loadImage("img/ludzik.png");
     }//koniec loadInitialImages()
 
      /**
