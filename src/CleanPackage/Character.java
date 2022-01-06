@@ -5,7 +5,7 @@ package CleanPackage;
  * @author Bartosz Nysztal
  */
 public class Character {
-    /** Początkowa współrzędna x obiektu */
+    /** Współrzędna x obiektu */
     public int x;
     /** Współrzędna y obiektu */
     public int y;
@@ -21,11 +21,46 @@ public class Character {
         this.y=y;
     }
 
+    /**
+     * Metoda pobrania współrzędnej x postaci
+     */
     public int getX(){
         return this.x;
     }
 
+    /**
+     * Metoda pobrania współrzędnej y postaci
+     */
     public int getY(){
         return this.y;
+    }
+
+    /**
+     * Metoda przessunięcia postaci w prawo
+     */
+    public void moveRight(){
+        this.x += 79;
+        System.out.println("ruch");
+    }
+
+    /**
+     * Metoda przessunięcia postaci w lewo
+     */
+    public void moveLeft(){
+        this.x -= 79;
+    }
+
+    /**
+     * Metoda przessunięcia postaci w górę
+     */
+    public void moveUp(){
+        this.y -= 79;
+    }
+
+    /**
+     * Metoda przessunięcia postaci w dół
+     */
+    public void moveDown(){
+        this.y += 79;
     }
 }

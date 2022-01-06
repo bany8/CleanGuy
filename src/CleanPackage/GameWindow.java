@@ -24,7 +24,7 @@ public class GameWindow extends JFrame {
         setUndecorated(true); //ukryj ramkę okna i przyciski kontrolne
         initGUI(width,height); //wywołaj metodę budowy interfejsu
         setVisible(true); //pokaż okno
-        //animationLoop(); //uruchom pętlę animacji gry
+        animationLoop(); //uruchom pętlę animacji gry
 
     }//koniec GameWindow()
 
@@ -40,4 +40,28 @@ public class GameWindow extends JFrame {
         add(new GamePanel(width,height)); //dodaj panel gry zawierający grafikę i akcję
     }//koniec initGUI()
 
+    /**
+     * Główna pętla gry - takt animacji (w procesie dalszej edukacji
+     * można używać wątków czy klasy Timer)
+     */
+    private void animationLoop() {
+        //pobierz liczbę milisekund od daty referencyjnej (w ms)
+        Data.startTime = System.currentTimeMillis();
+        long currTime = Data.startTime;
+
+        while (currTime - Data.startTime < Data.GAME_TIME) {
+            long elapsedTime = System.currentTimeMillis() - currTime;
+            //licz czas gry - może się przydać w ograniczeniach czasowych
+            //w tej demonstracji nie wykorzystane
+            currTime += elapsedTime;
+
+            //odrysuj kolejny ekran gry (nowe pozycje obiektów - symulacja ruchu)
+            repaint();
+
+            // przerwa w czasie
+            try {
+                Thread.sleep(80);
+            } catch (InterruptedException ex) {System.out.println("Wyjątek: "+ex);      }
+        }//koniec while
+    }//koniec animationLoop()
 }

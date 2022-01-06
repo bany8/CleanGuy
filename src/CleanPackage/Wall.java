@@ -7,7 +7,7 @@ package CleanPackage;
 public class Wall {
     /** Początkowa współrzędna x obiektu */
     public int x;
-    /** Współrzędna y obiektu */
+    /** Początkowa współrzędna y obiektu */
     public int y;
 
     /**
@@ -22,14 +22,14 @@ public class Wall {
     }
 
     /**
-     * Metoda pobrania współrzędnej x postaci
+     * Metoda pobrania współrzędnej x ściany
      */
     public int getX(){
         return this.x;
     }
 
     /**
-     * Metoda pobrania współrzędnej y postaci
+     * Metoda pobrania współrzędnej y ściany
      */
     public int getY(){
         return this.y;

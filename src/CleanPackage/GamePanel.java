@@ -2,6 +2,8 @@ package CleanPackage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+
 
 /**
  * Główna obszar graficzny gry
@@ -9,6 +11,7 @@ import java.awt.*;
  * @author Bartosz Nysztal
  */
 public class GamePanel extends JPanel {
+
     /** Szerokość pola graficznego gry*/
     public int sWidth;
     /** Wysokość pola graficznego gry*/
@@ -32,6 +35,38 @@ public class GamePanel extends JPanel {
 
         wall = new Wall(79,63);
         character = new Character(500,500);
+
+        /* Dodaj obsługę zdarzeń - wciśnięcie strzałki*/
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke){
+                System.out.print(ke.getKeyCode());
+                if (ke.getKeyCode()==39){
+                    character.moveRight();
+                    System.out.print(ke.getKeyCode());
+                } else if (ke.getKeyCode()==37){
+                    character.moveLeft();
+                    System.out.print(ke.getKeyCode());
+                } else if (ke.getKeyCode()==38){
+                    character.moveUp();
+                    System.out.print(ke.getKeyCode());
+                } else if (ke.getKeyCode()==40){
+                    character.moveDown();
+                    System.out.print(ke.getKeyCode());
+                }
+                repaint();
+            }
+        });
+
+        /* Dodaj obsługę zdarzeń - wciśnięcie przycisku myszki*/
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                //Czy wybrano opcję Menu w pasku dolnym
+                System.out.print(me.getX());
+                repaint();
+            }
+        });
     }
 
      /**

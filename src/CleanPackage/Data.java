@@ -5,6 +5,11 @@ import java.awt.*;
 
 public class Data {
 
+    /** Zmienna pomocnicza określająca początkowy czas gry */
+    public static long startTime;
+    /**  Dopuszczalny czas gry   */
+    public static long GAME_TIME=Long.MAX_VALUE;
+
     /**  Obrazy   */
     public static Image bgImage;
     public static Image characterImage;
