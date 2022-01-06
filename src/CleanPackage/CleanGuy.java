@@ -31,4 +31,5 @@ public class CleanGuy {
         //utwórz obiekt klasy GameWindow - konstruktor wywołuje dalszą akcję
         GameWindow gw=new GameWindow(gameWidth,gameHeight,xCenter,yCenter);
     }//koniec main()
+
 }//koniec class CleanGuy()

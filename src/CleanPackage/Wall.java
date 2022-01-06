@@ -1,30 +1,36 @@
 package CleanPackage;
 
 /**
- * Klasa dla postaci
+ * Klasa dla ściany
  * @author Bartosz Nysztal
  */
-public class Character {
+public class Wall {
     /** Początkowa współrzędna x obiektu */
     public int x;
     /** Współrzędna y obiektu */
     public int y;
 
     /**
-     * Konstruktor klasy postaci
+     * Konstruktor klasy ściany
      *
      * @param x pozycja oś x
      * @param y pozycja oś y
      */
-    public Character(int x, int y){
+    public Wall(int x, int y){
         this.x=x;
         this.y=y;
     }
 
+    /**
+     * Metoda pobrania współrzędnej x postaci
+     */
     public int getX(){
         return this.x;
     }
 
+    /**
+     * Metoda pobrania współrzędnej y postaci
+     */
     public int getY(){
         return this.y;
     }

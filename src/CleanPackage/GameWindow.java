@@ -27,9 +27,17 @@ public class GameWindow extends JFrame {
         //animationLoop(); //uruchom pętlę animacji gry
 
     }//koniec GameWindow()
+
+    /**
+     * Utwórz interfejs graficzny użytkownika
+     * @param width szerokość okna
+     * @param height wysokość okna
+     */
     private void initGUI(int width, int height){
         setLayout(new GridLayout(1,1)); //ustaw rozkład
+        //ustaw zasoby i parametry początkowe
         Data.loadInitialImages();
         add(new GamePanel(width,height)); //dodaj panel gry zawierający grafikę i akcję
     }//koniec initGUI()
+
 }

@@ -3,6 +3,11 @@ package CleanPackage;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Główna obszar graficzny gry
+ * Klasa dziedzicząca po klasie JPanel
+ * @author Bartosz Nysztal
+ */
 public class GamePanel extends JPanel {
     /** Szerokość pola graficznego gry*/
     public int sWidth;
@@ -12,6 +17,7 @@ public class GamePanel extends JPanel {
     public int barHeight;
     /** Obiekt pierwszego planu*/
     private Character character;
+    private Wall wall;
     /**
      * Konstruktor klasy pola graficznego gry.
      * Ustawienia początkowe oraz ładowanie zasobów
@@ -23,12 +29,12 @@ public class GamePanel extends JPanel {
     public GamePanel(int width, int height) {
         this.sWidth = width;
         this.sHeight = height;
-        barHeight = 50;
 
+        wall = new Wall(79,63);
         character = new Character(500,500);
     }
 
-    /**
+     /**
      * Nadpisz metodę odpowiedzialną za odrysowanie panelu - własne wypełnienie
      * pola graficznego gry, zgodnie z wybraną treścią.
      *
@@ -42,5 +48,6 @@ public class GamePanel extends JPanel {
         // Narysuj tło
         g.drawImage(Data.bgImage, 0, 0, null);
         g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
+        g.drawImage(Data.wallImage, wall.getX(), wall.getY(), null);
     }
 }

@@ -5,13 +5,15 @@ import java.awt.*;
 
 public class Data {
 
-    /**  Obraz tła   */
+    /**  Obrazy   */
     public static Image bgImage;
     public static Image characterImage;
+    public static Image wallImage;
 
     public static void loadInitialImages() {
         bgImage = loadImage("img/tlo.png");
         characterImage = loadImage("img/ludzik.png");
+        wallImage = loadImage("img/siano.png");
     }//koniec loadInitialImages()
 
      /**
