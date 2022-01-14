@@ -2,12 +2,17 @@ package CleanPackage;
 
 /**
  * Klasa dla postaci
+ *
  * @author Bartosz Nysztal
  */
 public class Character {
-    /** Współrzędna x obiektu */
+    /**
+     * Współrzędna x obiektu
+     */
     public int x;
-    /** Współrzędna y obiektu */
+    /**
+     * Współrzędna y obiektu
+     */
     public int y;
 
     /**
@@ -16,29 +21,29 @@ public class Character {
      * @param x pozycja oś x
      * @param y pozycja oś y
      */
-    public Character(int x, int y){
-        this.x=x;
-        this.y=y;
+    public Character(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     /**
      * Metoda pobrania współrzędnej x postaci
      */
-    public int getX(){
+    public int getX() {
         return this.x;
     }
 
     /**
      * Metoda pobrania współrzędnej y postaci
      */
-    public int getY(){
+    public int getY() {
         return this.y;
     }
 
     /**
      * Metoda przessunięcia postaci w prawo
      */
-    public void moveRight(){
+    public void moveRight() {
         this.x += 79;
         System.out.println("ruch");
     }
@@ -46,21 +51,21 @@ public class Character {
     /**
      * Metoda przessunięcia postaci w lewo
      */
-    public void moveLeft(){
+    public void moveLeft() {
         this.x -= 79;
     }
 
     /**
      * Metoda przessunięcia postaci w górę
      */
-    public void moveUp(){
+    public void moveUp() {
         this.y -= 79;
     }
 
     /**
      * Metoda przessunięcia postaci w dół
      */
-    public void moveDown(){
+    public void moveDown() {
         this.y += 79;
     }
 }

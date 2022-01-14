@@ -1,11 +1,11 @@
 package CleanPackage;
 
 /**
- * Klasa dla ściany
+ * Klasa dla śmietnika
  *
  * @author Bartosz Nysztal
  */
-public class Wall {
+public class Dumbster {
     /**
      * Współrzędna x obiektu
      */
@@ -16,25 +16,31 @@ public class Wall {
     public int y;
 
     /**
-     * Konstruktor klasy ściany
+     * Wyliczenie kolorów
+     */
+    public String color;
+
+    /**
+     * Konstruktor klasy śmietnika
      *
      * @param x pozycja oś x
      * @param y pozycja oś y
      */
-    public Wall(int x, int y) {
+    public Dumbster(int x, int y, String color) {
         this.x = x;
         this.y = y;
+        this.color = color;
     }
 
     /**
-     * Metoda pobrania współrzędnej x ściany
+     * Metoda pobrania współrzędnej x śmietnika
      */
     public int getX() {
         return this.x;
     }
 
     /**
-     * Metoda pobrania współrzędnej y ściany
+     * Metoda pobrania współrzędnej x śmietnika
      */
     public int getY() {
         return this.y;
