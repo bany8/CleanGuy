@@ -53,4 +53,12 @@ public class TrashBanana {
     public void putY(int y) {
         this.y = y;
     }
+
+    /**
+     * Metoda zmiany współrzędnych x i y odpadu - banan
+     */
+    public void putXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 }

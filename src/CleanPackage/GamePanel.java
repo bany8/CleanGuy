@@ -45,8 +45,8 @@ public class GamePanel extends JPanel {
         this.sWidth = width;
         this.sHeight = height;
 
-        character = new Character(5*80, 5*64);
-        trashBanana = new TrashBanana(5*80, 15*64);
+        character = new Character(5*80, 6*64);
+        trashBanana = new TrashBanana(6*80, 5*64);
         dumbster = new Dumbster[5];
         dumbster[0] = new Dumbster(1*80, 1*64, "green");
         dumbster[1] = new Dumbster(14*80, 1*64, "black");
@@ -81,9 +81,13 @@ public class GamePanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                //Czy wybrano opcję Menu w pasku dolnym
-                System.out.print(me.getX());
-                repaint();
+                if(me.getX() < trashBanana.getX()+80 && me.getX() > trashBanana.getX()
+                && me.getY() < trashBanana.getY()+64 && me.getY() > trashBanana.getY()
+                && character.getY() > trashBanana.getY()-65 && character.getY() < trashBanana.getY()+65
+                && character.getX() > trashBanana.getX()-81 && character.getX() < trashBanana.getX()+81){
+                    trashBanana.putXY(5*80, 15*64);
+                }
+                    repaint();
             }
         });
     }
