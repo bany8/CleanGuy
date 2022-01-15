@@ -13,13 +13,14 @@ public class Data {
     public final static long NO_LEVELS=2;
     /**  Zmienna stanu określającam czy jest przerwa w grze   */
     public static boolean pause=false;
+    /**  Zmienna stanu określającam czy jest przerwa w grze   */
+    public static boolean menu=false;
     /** Zmienna stanu określająca czy wybrano menu*/
     public static boolean levelPause=false;
     /** Zmienna pomocnicza określająca czas ukończenia aktualnego poziomu */
     public static double levelTime;
     /** Zmienna pomocnicza określająca status ukończenia gry */
-    public static boolean end=false;
-    public static int endGame;
+    public static int endGame=0;
     /**
      * Obrazy
      */

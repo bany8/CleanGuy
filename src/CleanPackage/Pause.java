@@ -39,4 +39,8 @@ public class Pause {
     public int getY() {
         return this.y;
     }
+
+    public void pauseGame(){
+        Data.pause = !Data.pause;
+    }
 }

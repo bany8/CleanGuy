@@ -3,6 +3,7 @@ package CleanPackage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 
 
 /**
@@ -20,9 +21,15 @@ public class GamePanel extends JPanel {
     /**
      * Wysokość pola graficznego gry
      */
+    /** Obiekt reprezentujący status gry*/
+    public GameStatus gameStatus;
     public int sHeight;
     public Pause pause;
     public Menu menu;
+    /** Czcionki stosowane w pasku Menu*/
+    public Font menuFont;
+    /** Czcionki stosowane jako alert w polu gry*/
+    public Font alertFont;
 
     public KeyAdapter keyAdapter;
     /**
@@ -44,6 +51,9 @@ public class GamePanel extends JPanel {
      * @param height Wysokość pola graficznego gry
      */
     public GamePanel(int width, int height) {
+        gameStatus=new GameStatus();
+        menuFont=new Font("Dialog",Font.BOLD,36);
+        alertFont=new Font("Dialog",Font.BOLD,92);
         setFocusable(true);
         requestFocusInWindow();
         this.sWidth = width;
@@ -97,6 +107,18 @@ public class GamePanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
+                if(Data.menu && me.getX()>470 && me.getX()<720 && me.getY()>585 && me.getY()<620){
+                        System.exit(1);
+                }
+                if(Data.menu && me.getX()>470 && me.getX()<685 && me.getY()>485 && me.getY()<520){
+
+                }
+                if(Data.menu && me.getX()>470 && me.getX()<835 && me.getY()>385 && me.getY()<420){
+
+                }
+                if(Data.endGame == 2 && me.getX()>470 && me.getX()<720 && me.getY()>665 && me.getY()<700){
+                    System.exit(1);
+                }
                 if (me.getX() < trashBanana.getX() + 80 && me.getX() > trashBanana.getX()
                         && me.getY() < trashBanana.getY() + 64 && me.getY() > trashBanana.getY()
                         && character.getY() > trashBanana.getY() - 65 && character.getY() < trashBanana.getY() + 65
@@ -119,27 +141,42 @@ public class GamePanel extends JPanel {
                     if (me.getX() < trashGlassBottle.getX() + 80 && me.getX() > trashGlassBottle.getX()
                             && me.getY() < trashGlassBottle.getY() + 64 && me.getY() > trashGlassBottle.getY()
                             && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
-                            && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81) {
+                            && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81
+                            && (5*80 == trashGlassBottle.getX() || 6*80 == trashGlassBottle.getX() || 7*80 == trashGlassBottle.getX()
+                            || 8*80 == trashGlassBottle.getX() || 9*80 == trashGlassBottle.getX() || 10*80 == trashGlassBottle.getX()
+                            || 11*80 == trashGlassBottle.getX()) && trashGlassBottle.getY() == 15*64) {
                         if (dumbster[i].color == "yellow") {
                             trashGlassBottle.moveToEquipment(0, 0);
-                            System.out.print("git");
                             Data.endGame++;
                         } else {
                             trashGlassBottle.throwAway(0, 0);
-                            System.out.print("nie git");
                             Data.endGame++;
                         }
                     }
                     if (me.getX() < trashBanana.getX() + 80 && me.getX() > trashBanana.getX()
                             && me.getY() < trashBanana.getY() + 64 && me.getY() > trashBanana.getY()
                             && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
-                            && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81) {
+                            && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81
+                            && (5*80 == trashBanana.getX() || 6*80 == trashBanana.getX() || 7*80 == trashBanana.getX()
+                            || 8*80 == trashBanana.getX() || 9*80 == trashBanana.getX() || 10*80 == trashBanana.getX()
+                            || 11*80 == trashBanana.getX()) && trashBanana.getY() == 15*64) {
                         if (dumbster[i].color == "brown") {
                             trashBanana.moveToEquipment(0, 0);
+                            Data.endGame++;
                         }else {
                             trashBanana.throwAway(0, 0);
-                            System.out.print("nie git");
+                            Data.endGame++;
                         }
+                    }
+                    if (me.getX() < pause.getX() + 80 && me.getX() > pause.getX()
+                            && me.getY() < pause.getY() + 64 && me.getY() > pause.getY()) {
+                        pause.pauseGame();
+
+                    }
+                    if (me.getX() < menu.getX() + 80 && me.getX() > menu.getX()
+                            && me.getY() < menu.getY() + 64 && me.getY() > menu.getY()) {
+                        menu.gameMenu();
+
                     }
                 }
 
@@ -184,9 +221,29 @@ public class GamePanel extends JPanel {
             }
         }
         g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
-        //Jeśli już wybrano Menu (czyli pausa) narysuj stosowną wersję paska Menu
-        if(Data.pause){
 
+
+        if(Data.pause){
+            g.setColor(new Color(50,30,0));
+            g.fillRect(300, 300, 680, 424);
+            g.setColor(Color.white);
+            g.setFont(menuFont);
+            g.drawString("GRA ZATRZYMANA",470,520);
+        } else if(Data.menu){
+            g.setColor(new Color(50,30,0));
+            g.fillRect(300, 300, 680, 424);
+            g.setColor(Color.white);
+            g.setFont(menuFont);
+            g.drawString("NASTEPNY POZIOM",470,420);
+            g.drawString("NOWA GRA",470,520);
+            g.drawString("KONIEC GRY",470,620);
+        }
+        if(Data.endGame == 2){
+            g.setColor(new Color(50,30,0));
+            g.fillRect(300, 300, 680, 424);
+            g.setColor(Color.white);
+            g.setFont(menuFont);
+            g.drawString("GRAJ OD NOWA",400,700);
         }
     }
 }

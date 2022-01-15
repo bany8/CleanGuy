@@ -39,4 +39,8 @@ public class Menu {
     public int getY() {
         return this.y;
     }
+
+    public void gameMenu(){
+        Data.menu = !Data.menu;
+    }
 }
