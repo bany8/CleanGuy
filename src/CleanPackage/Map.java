@@ -15,9 +15,9 @@ public class Map {
 
     public Map(){
         boxEquipment = new boolean[16];
-        boxWall = new boolean[16][15];
+        boxWall = new boolean[16][16];
         for (int i = 0; i<16 ;i++){
-            for (int j = 0 ; j<15 ; j++){
+            for (int j = 0 ; j<16 ; j++){
                 this.boxEquipment[i]=false;
                 this.boxWall[i][j]=false;
             }

@@ -63,19 +63,14 @@ public class GamePanel extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
-                System.out.print(ke.getKeyCode());
                 if (ke.getKeyCode() == 39) {
                     character.moveRight();
-                    System.out.print(ke.getKeyCode());
                 } else if (ke.getKeyCode() == 37) {
                     character.moveLeft();
-                    System.out.print(ke.getKeyCode());
                 } else if (ke.getKeyCode() == 38) {
                     character.moveUp();
-                    System.out.print(ke.getKeyCode());
                 } else if (ke.getKeyCode() == 40) {
                     character.moveDown();
-                    System.out.print(ke.getKeyCode());
                 }
                 repaint();
             }
@@ -130,7 +125,7 @@ public class GamePanel extends JPanel {
                 g.drawImage(Data.brownDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
             }
         }
-        g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
         g.drawImage(Data.wallImage, wall.getX(), wall.getY(), null);
+        g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
     }
 }

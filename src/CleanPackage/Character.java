@@ -15,6 +15,8 @@ public class Character {
      */
     public int y;
 
+    public Map map;
+
     /**
      * Konstruktor klasy postaci
      *
@@ -44,28 +46,47 @@ public class Character {
      * Metoda przessunięcia postaci w prawo
      */
     public void moveRight() {
-        this.x += 79;
-        System.out.println("ruch");
+        if (GamePanel.map.isTaken(x +80,y)){
+            this.x=x;
+        }
+        else {
+            this.x += 80;
+        }
     }
 
     /**
      * Metoda przessunięcia postaci w lewo
      */
     public void moveLeft() {
-        this.x -= 79;
+        if (GamePanel.map.isTaken(x -80,y)){
+            this.x=x;
+        }
+        else {
+            this.x -= 80;
+        }
     }
 
     /**
      * Metoda przessunięcia postaci w górę
      */
     public void moveUp() {
-        this.y -= 79;
+        if (GamePanel.map.isTaken(x ,y-64)){
+            this.y=y;
+        }
+        else {
+            this.y -= 64;
+        }
     }
 
     /**
      * Metoda przessunięcia postaci w dół
      */
     public void moveDown() {
-        this.y += 79;
+        if (GamePanel.map.isTaken(x ,y+64)){
+            this.y=y;
+        }
+        else {
+            this.y += 64;
+        }
     }
 }
