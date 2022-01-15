@@ -48,25 +48,25 @@ public class GamePanel extends JPanel {
         this.sHeight = height;
 
         map = new Map();
-        trashBanana = new TrashBanana(4*80, 1*64);
-        trashGlassBottle = new TrashGlassBottle(10*80, 9*64);
+        trashBanana = new TrashBanana(4 * 80, 1 * 64);
+        trashGlassBottle = new TrashGlassBottle(10 * 80, 9 * 64);
         dumbster = new Dumbster[5];
-        dumbster[0] = new Dumbster(1*80, 1*64, "green");
-        dumbster[1] = new Dumbster(14*80, 1*64, "black");
-        dumbster[2] = new Dumbster(5*80, 7*64, "blue");
-        dumbster[3] = new Dumbster(1*80, 13*64, "yellow");
-        dumbster[4] = new Dumbster(14*80, 13*64, "brown");
-        character = new Character(5*80, 6*64);
+        dumbster[0] = new Dumbster(1 * 80, 1 * 64, "green");
+        dumbster[1] = new Dumbster(14 * 80, 1 * 64, "black");
+        dumbster[2] = new Dumbster(5 * 80, 7 * 64, "blue");
+        dumbster[3] = new Dumbster(1 * 80, 13 * 64, "yellow");
+        dumbster[4] = new Dumbster(14 * 80, 13 * 64, "brown");
+        character = new Character(5 * 80, 6 * 64);
         wall = new Wall[16][15];
-        for (int i =0 ; i < 16; i++){
-            for (int j = 0 ; j < 15; j++){
-                wall[i][j] = new Wall(0,0);
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 15; j++) {
+                wall[i][j] = new Wall(0, 0);
             }
         }
-        for (int i =0 ; i < 16; i++){
-            for (int j = 0 ; j < 15; j++){
-                if(wall[0][0].table[i][j]){
-                    wall[i][j].putXY(i*80,j*64);
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 15; j++) {
+                if (wall[0][0].table[i][j]) {
+                    wall[i][j].putXY(i * 80, j * 64);
                 }
             }
         }
@@ -93,19 +93,44 @@ public class GamePanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                if(me.getX() < trashBanana.getX()+80 && me.getX() > trashBanana.getX()
-                        && me.getY() < trashBanana.getY()+64 && me.getY() > trashBanana.getY()
-                        && character.getY() > trashBanana.getY()-65 && character.getY() < trashBanana.getY()+65
-                        && character.getX() > trashBanana.getX()-81 && character.getX() < trashBanana.getX()+81){
-                    trashBanana.move(5*80, 15*64);
+                if (me.getX() < trashBanana.getX() + 80 && me.getX() > trashBanana.getX()
+                        && me.getY() < trashBanana.getY() + 64 && me.getY() > trashBanana.getY()
+                        && character.getY() > trashBanana.getY() - 65 && character.getY() < trashBanana.getY() + 65
+                        && character.getX() > trashBanana.getX() - 81 && character.getX() < trashBanana.getX() + 81) {
+                    trashBanana.move(5 * 80, 15 * 64);
                 }
-                if(me.getX() < trashGlassBottle.getX()+80 && me.getX() > trashGlassBottle.getX()
-                        && me.getY() < trashGlassBottle.getY()+64 && me.getY() > trashGlassBottle.getY()
-                        && character.getY() > trashGlassBottle.getY()-65 && character.getY() < trashGlassBottle.getY()+65
-                        && character.getX() > trashGlassBottle.getX()-81 && character.getX() < trashGlassBottle.getX()+81){
-                    trashGlassBottle.move(5*80, 15*64);
+                if (me.getX() < trashGlassBottle.getX() + 80 && me.getX() > trashGlassBottle.getX()
+                        && me.getY() < trashGlassBottle.getY() + 64 && me.getY() > trashGlassBottle.getY()
+                        && character.getY() > trashGlassBottle.getY() - 65 && character.getY() < trashGlassBottle.getY() + 65
+                        && character.getX() > trashGlassBottle.getX() - 81 && character.getX() < trashGlassBottle.getX() + 81) {
+                    trashGlassBottle.move(5 * 80, 15 * 64);
                 }
-                    repaint();
+                if (me.getX() < trashGlassBottle.getX() + 80 && me.getX() > trashGlassBottle.getX()
+                        && me.getY() < trashGlassBottle.getY() + 64 && me.getY() > trashGlassBottle.getY()
+                        && character.getY() > trashGlassBottle.getY() - 65 && character.getY() < trashGlassBottle.getY() + 65
+                        && character.getX() > trashGlassBottle.getX() - 81 && character.getX() < trashGlassBottle.getX() + 81) {
+                    trashGlassBottle.move(5 * 80, 15 * 64);
+                }
+                for (int i = 0; i < 5; i++) {
+                    if (me.getX() < trashGlassBottle.getX() + 80 && me.getX() > trashGlassBottle.getX()
+                            && me.getY() < trashGlassBottle.getY() + 64 && me.getY() > trashGlassBottle.getY()
+                            && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
+                            && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81) {
+                        if (dumbster[i].color == "yellow") {
+                            trashGlassBottle.move(0, 0);
+                        }
+                    }
+                    if (me.getX() < trashBanana.getX() + 80 && me.getX() > trashBanana.getX()
+                            && me.getY() < trashBanana.getY() + 64 && me.getY() > trashBanana.getY()
+                            && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
+                            && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81) {
+                        if (dumbster[i].color == "brown") {
+                            trashBanana.move(0, 0);
+                        }
+                    }
+                }
+
+                repaint();
             }
         });
     }
@@ -126,20 +151,20 @@ public class GamePanel extends JPanel {
         g.drawImage(Data.trashBananaImage, trashBanana.getX(), trashBanana.getY(), null);
         g.drawImage(Data.trashGlassBottleImage, trashGlassBottle.getX(), trashGlassBottle.getY(), null);
         for (int i = 0; i < 5; i++) {
-            if (dumbster[i].color == "black"){
+            if (dumbster[i].color == "black") {
                 g.drawImage(Data.blackDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
-            } else if (dumbster[i].color == "green"){
+            } else if (dumbster[i].color == "green") {
                 g.drawImage(Data.greenDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
-            }else if (dumbster[i].color == "yellow"){
+            } else if (dumbster[i].color == "yellow") {
                 g.drawImage(Data.yellowDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
-            }else if (dumbster[i].color == "blue"){
+            } else if (dumbster[i].color == "blue") {
                 g.drawImage(Data.blueDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
-            }else if (dumbster[i].color == "brown"){
+            } else if (dumbster[i].color == "brown") {
                 g.drawImage(Data.brownDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
             }
         }
-        for (int i =0 ; i < 16; i++){
-            for (int j = 0 ; j < 15; j++){
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 15; j++) {
                 g.drawImage(Data.wallImage, wall[i][j].getX(), wall[i][j].getY(), null);
             }
         }

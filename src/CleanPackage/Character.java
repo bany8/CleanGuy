@@ -15,8 +15,6 @@ public class Character {
      */
     public int y;
 
-    public Map map;
-
     /**
      * Konstruktor klasy postaci
      *

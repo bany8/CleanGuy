@@ -33,7 +33,7 @@ public class Data {
         characterImage = loadImage("img/ludzik.png");
         wallImage = loadImage("img/siano.png");
         trashBananaImage = loadImage("img/banan.png");
-        trashGlassBottleImage = loadImage("img/butelka_szklo.png");
+        trashGlassBottleImage = loadImage("img/banan.png");
         brownDumbsterImage = loadImage("img/kosz_brazowy.png");
         blackDumbsterImage = loadImage("img/kosz_czarny.png");
         yellowDumbsterImage = loadImage("img/kosz_zolty.png");

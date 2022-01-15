@@ -15,8 +15,6 @@ public class Wall {
      */
     public int y;
 
-    public Map map;
-
     /**
      * Konstruktor klasy ściany
      *

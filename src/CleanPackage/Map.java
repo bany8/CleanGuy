@@ -39,4 +39,7 @@ public class Map {
     public void toTakeEquipment(int x) {
         this.boxEquipment[x/80]=true;
     }
+    public void unTakeEquipment(int x) {
+        this.boxEquipment[x/80]=false;
+    }
 }
