@@ -21,6 +21,8 @@ public class GamePanel extends JPanel {
      * Wysokość pola graficznego gry
      */
     public int sHeight;
+    public Pause pause;
+    public Menu menu;
 
     public KeyAdapter keyAdapter;
     /**
@@ -48,6 +50,8 @@ public class GamePanel extends JPanel {
         this.sHeight = height;
 
         map = new Map();
+        pause = new Pause(14 * 80, 15 * 64);
+        menu = new Menu(15 * 80, 15 * 64);
         trashBanana = new TrashBanana(4 * 80, 1 * 64);
         trashGlassBottle = new TrashGlassBottle(10 * 80, 9 * 64);
         dumbster = new Dumbster[5];
@@ -97,19 +101,19 @@ public class GamePanel extends JPanel {
                         && me.getY() < trashBanana.getY() + 64 && me.getY() > trashBanana.getY()
                         && character.getY() > trashBanana.getY() - 65 && character.getY() < trashBanana.getY() + 65
                         && character.getX() > trashBanana.getX() - 81 && character.getX() < trashBanana.getX() + 81) {
-                    trashBanana.move(5 * 80, 15 * 64);
+                    trashBanana.moveToEquipment(5 * 80, 15 * 64);
                 }
                 if (me.getX() < trashGlassBottle.getX() + 80 && me.getX() > trashGlassBottle.getX()
                         && me.getY() < trashGlassBottle.getY() + 64 && me.getY() > trashGlassBottle.getY()
                         && character.getY() > trashGlassBottle.getY() - 65 && character.getY() < trashGlassBottle.getY() + 65
                         && character.getX() > trashGlassBottle.getX() - 81 && character.getX() < trashGlassBottle.getX() + 81) {
-                    trashGlassBottle.move(5 * 80, 15 * 64);
+                    trashGlassBottle.moveToEquipment(5 * 80, 15 * 64);
                 }
                 if (me.getX() < trashGlassBottle.getX() + 80 && me.getX() > trashGlassBottle.getX()
                         && me.getY() < trashGlassBottle.getY() + 64 && me.getY() > trashGlassBottle.getY()
                         && character.getY() > trashGlassBottle.getY() - 65 && character.getY() < trashGlassBottle.getY() + 65
                         && character.getX() > trashGlassBottle.getX() - 81 && character.getX() < trashGlassBottle.getX() + 81) {
-                    trashGlassBottle.move(5 * 80, 15 * 64);
+                    trashGlassBottle.moveToEquipment(5 * 80, 15 * 64);
                 }
                 for (int i = 0; i < 5; i++) {
                     if (me.getX() < trashGlassBottle.getX() + 80 && me.getX() > trashGlassBottle.getX()
@@ -117,7 +121,13 @@ public class GamePanel extends JPanel {
                             && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
                             && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81) {
                         if (dumbster[i].color == "yellow") {
-                            trashGlassBottle.move(0, 0);
+                            trashGlassBottle.moveToEquipment(0, 0);
+                            System.out.print("git");
+                            Data.endGame++;
+                        } else {
+                            trashGlassBottle.throwAway(0, 0);
+                            System.out.print("nie git");
+                            Data.endGame++;
                         }
                     }
                     if (me.getX() < trashBanana.getX() + 80 && me.getX() > trashBanana.getX()
@@ -125,7 +135,10 @@ public class GamePanel extends JPanel {
                             && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
                             && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81) {
                         if (dumbster[i].color == "brown") {
-                            trashBanana.move(0, 0);
+                            trashBanana.moveToEquipment(0, 0);
+                        }else {
+                            trashBanana.throwAway(0, 0);
+                            System.out.print("nie git");
                         }
                     }
                 }
@@ -150,6 +163,8 @@ public class GamePanel extends JPanel {
         g.drawImage(Data.bgImage, 0, 0, null);
         g.drawImage(Data.trashBananaImage, trashBanana.getX(), trashBanana.getY(), null);
         g.drawImage(Data.trashGlassBottleImage, trashGlassBottle.getX(), trashGlassBottle.getY(), null);
+        g.drawImage(Data.pauseImage, pause.getX(), pause.getY(), null);
+        g.drawImage(Data.menuImage, menu.getX(), menu.getY(), null);
         for (int i = 0; i < 5; i++) {
             if (dumbster[i].color == "black") {
                 g.drawImage(Data.blackDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
@@ -168,7 +183,10 @@ public class GamePanel extends JPanel {
                 g.drawImage(Data.wallImage, wall[i][j].getX(), wall[i][j].getY(), null);
             }
         }
-
         g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
+        //Jeśli już wybrano Menu (czyli pausa) narysuj stosowną wersję paska Menu
+        if(Data.pause){
+
+        }
     }
 }

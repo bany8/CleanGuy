@@ -52,7 +52,7 @@ public class GameWindow extends JFrame {
         Data.startTime = System.currentTimeMillis();
         long currTime = Data.startTime;
 
-        while (currTime - Data.startTime < Data.GAME_TIME) {
+        while (currTime - Data.startTime <= Data.endGame) {
             long elapsedTime = System.currentTimeMillis() - currTime;
             //licz czas gry - może się przydać w ograniczeniach czasowych
             //w tej demonstracji nie wykorzystane

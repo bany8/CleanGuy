@@ -9,11 +9,17 @@ public class Data {
      * Zmienna pomocnicza określająca początkowy czas gry
      */
     public static long startTime;
-    /**
-     * Dopuszczalny czas gry
-     */
-    public static long GAME_TIME = Long.MAX_VALUE;
-
+    /**  Liczba poziomów gry   */
+    public final static long NO_LEVELS=2;
+    /**  Zmienna stanu określającam czy jest przerwa w grze   */
+    public static boolean pause=false;
+    /** Zmienna stanu określająca czy wybrano menu*/
+    public static boolean levelPause=false;
+    /** Zmienna pomocnicza określająca czas ukończenia aktualnego poziomu */
+    public static double levelTime;
+    /** Zmienna pomocnicza określająca status ukończenia gry */
+    public static boolean end=false;
+    public static int endGame;
     /**
      * Obrazy
      */
@@ -27,18 +33,22 @@ public class Data {
     public static Image yellowDumbsterImage;
     public static Image blackDumbsterImage;
     public static Image brownDumbsterImage;
+    public static Image pauseImage;
+    public static Image menuImage;
 
     public static void loadInitialImages() {
         bgImage = loadImage("img/tlo.png");
         characterImage = loadImage("img/ludzik.png");
         wallImage = loadImage("img/siano.png");
         trashBananaImage = loadImage("img/banan.png");
-        trashGlassBottleImage = loadImage("img/banan.png");
+        trashGlassBottleImage = loadImage("img/butelka_szklo.png");
         brownDumbsterImage = loadImage("img/kosz_brazowy.png");
         blackDumbsterImage = loadImage("img/kosz_czarny.png");
         yellowDumbsterImage = loadImage("img/kosz_zolty.png");
         blueDumbsterImage = loadImage("img/kosz_niebieski.png");
         greenDumbsterImage = loadImage("img/kosz_zielony.png");
+        pauseImage = loadImage("img/pauza.png");
+        menuImage = loadImage("img/menu.png");
     }//koniec loadInitialImages()
 
     /**

@@ -1,5 +1,10 @@
 package CleanPackage;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
 /**
  * Klasa dla odpadu - szklana butelka
  *
@@ -57,7 +62,7 @@ public class Trash {
     /**
      * Metoda zmiany współrzędnych x i y odpadu - szklana butelka
      */
-    public void move(int x, int y) {
+    public void moveToEquipment(int x, int y) {
         for (int i = 0; i<7;i++){
             if (GamePanel.map.isTakenEquipment(x +80*i)){
             } else {
@@ -68,4 +73,34 @@ public class Trash {
             }
         }
     }
+    public void throwAway(int x, int y) {
+        for (int i = 0; i<7;i++){
+            if (GamePanel.map.isTakenEquipment(x +80*i)){
+            } else {
+                this.x = x + i * 80;
+                this.y = y;
+                GamePanel.map.toTakeEquipment(x+i*80);
+                playSound(new File("sound/smieci.wav"));
+                break;
+            }
+        }
+    }
+    /**
+     * Funkcja odtwarzania dźwięku z pliku
+     * @param f - obiekt klasy File reprezentujący ścieżkę do pliku MP3
+     */
+    public static synchronized void playSound(final File f) {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Clip clip = AudioSystem.getClip();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(f);
+                    clip.open(inputStream);
+                    clip.start();
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+            }
+        }).start();
+    }//playSound()
 }
