@@ -62,12 +62,10 @@ public class TrashGlassBottle {
     public void move(int x, int y) {
         for (int i = 0; i<7;i++){
             if (GamePanel.map.isTakenEquipment(x +80*i)){
-                System.out.println(999+i);
             } else {
                 this.x = x + i * 80;
                 this.y = y;
                 GamePanel.map.toTakeEquipment(x+i*80);
-                System.out.println(888+i);
                 break;
             }
         }
