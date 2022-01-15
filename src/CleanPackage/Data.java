@@ -21,6 +21,7 @@ public class Data {
     public static Image characterImage;
     public static Image wallImage;
     public static Image trashBananaImage;
+    public static Image trashGlassBottleImage;
     public static Image greenDumbsterImage;
     public static Image blueDumbsterImage;
     public static Image yellowDumbsterImage;
@@ -32,6 +33,7 @@ public class Data {
         characterImage = loadImage("img/ludzik.png");
         wallImage = loadImage("img/siano.png");
         trashBananaImage = loadImage("img/banan.png");
+        trashGlassBottleImage = loadImage("img/butelka_szklo.png");
         brownDumbsterImage = loadImage("img/kosz_brazowy.png");
         blackDumbsterImage = loadImage("img/kosz_czarny.png");
         yellowDumbsterImage = loadImage("img/kosz_zolty.png");

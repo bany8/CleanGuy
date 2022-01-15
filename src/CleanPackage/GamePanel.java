@@ -21,10 +21,8 @@ public class GamePanel extends JPanel {
      * Wysokość pola graficznego gry
      */
     public int sHeight;
-    /**
-     * Wysokość paska menu
-     */
-    public int barHeight;
+
+    public KeyAdapter keyAdapter;
     /**
      * Obiekt pierwszego planu
      */
@@ -32,6 +30,8 @@ public class GamePanel extends JPanel {
     private Wall wall;
     private Dumbster[] dumbster;
     private TrashBanana trashBanana;
+    private TrashGlassBottle trashGlassBottle;
+    public static Map map;
 
     /**
      * Konstruktor klasy pola graficznego gry.
@@ -45,47 +45,55 @@ public class GamePanel extends JPanel {
         this.sWidth = width;
         this.sHeight = height;
 
+        map = new Map();
         character = new Character(5*80, 6*64);
         trashBanana = new TrashBanana(6*80, 5*64);
+        trashGlassBottle = new TrashGlassBottle(4*80, 7*64);
         dumbster = new Dumbster[5];
         dumbster[0] = new Dumbster(1*80, 1*64, "green");
         dumbster[1] = new Dumbster(14*80, 1*64, "black");
         dumbster[2] = new Dumbster(5*80, 7*64, "blue");
         dumbster[3] = new Dumbster(1*80, 13*64, "yellow");
         dumbster[4] = new Dumbster(14*80, 13*64, "brown");
-        wall = new Wall(15*80,14*64);
+        wall = new Wall(13*80,14*64);
 
-        /* Dodaj obsługę zdarzeń - wciśnięcie strzałki*/
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                System.out.print(ke.getKeyCode());
-                if (ke.getKeyCode() == 39) {
-                    character.moveRight();
-                    System.out.print(ke.getKeyCode());
-                } else if (ke.getKeyCode() == 37) {
-                    character.moveLeft();
-                    System.out.print(ke.getKeyCode());
-                } else if (ke.getKeyCode() == 38) {
-                    character.moveUp();
-                    System.out.print(ke.getKeyCode());
-                } else if (ke.getKeyCode() == 40) {
-                    character.moveDown();
-                    System.out.print(ke.getKeyCode());
-                }
-                repaint();
-            }
-        });
+//        /* Dodaj obsługę zdarzeń - wciśnięcie strzałki*/
+//        addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent ke) {
+//                System.out.print(ke.getKeyCode());
+//                if (ke.getKeyCode() == 39) {
+//                    character.moveRight();
+//                    System.out.print(ke.getKeyCode());
+//                } else if (ke.getKeyCode() == 37) {
+//                    character.moveLeft();
+//                    System.out.print(ke.getKeyCode());
+//                } else if (ke.getKeyCode() == 38) {
+//                    character.moveUp();
+//                    System.out.print(ke.getKeyCode());
+//                } else if (ke.getKeyCode() == 40) {
+//                    character.moveDown();
+//                    System.out.print(ke.getKeyCode());
+//                }
+//                repaint();
+//            }
+//        });
 
         /* Dodaj obsługę zdarzeń - wciśnięcie przycisku myszki*/
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 if(me.getX() < trashBanana.getX()+80 && me.getX() > trashBanana.getX()
-                && me.getY() < trashBanana.getY()+64 && me.getY() > trashBanana.getY()
-                && character.getY() > trashBanana.getY()-65 && character.getY() < trashBanana.getY()+65
-                && character.getX() > trashBanana.getX()-81 && character.getX() < trashBanana.getX()+81){
-                    trashBanana.putXY(5*80, 15*64);
+                        && me.getY() < trashBanana.getY()+64 && me.getY() > trashBanana.getY()
+                        && character.getY() > trashBanana.getY()-65 && character.getY() < trashBanana.getY()+65
+                        && character.getX() > trashBanana.getX()-81 && character.getX() < trashBanana.getX()+81){
+                    trashBanana.move(5*80, 15*64);
+                }
+                if(me.getX() < trashGlassBottle.getX()+80 && me.getX() > trashGlassBottle.getX()
+                        && me.getY() < trashGlassBottle.getY()+64 && me.getY() > trashGlassBottle.getY()
+                        && character.getY() > trashGlassBottle.getY()-65 && character.getY() < trashGlassBottle.getY()+65
+                        && character.getX() > trashGlassBottle.getX()-81 && character.getX() < trashGlassBottle.getX()+81){
+                    trashGlassBottle.move(5*80, 15*64);
                 }
                     repaint();
             }
@@ -106,6 +114,7 @@ public class GamePanel extends JPanel {
         // Narysuj tło i  inne elementy
         g.drawImage(Data.bgImage, 0, 0, null);
         g.drawImage(Data.trashBananaImage, trashBanana.getX(), trashBanana.getY(), null);
+        g.drawImage(Data.trashGlassBottleImage, trashGlassBottle.getX(), trashGlassBottle.getY(), null);
         g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
         for (int i = 0; i < 5; i++) {
             if (dumbster[i].color == "black"){

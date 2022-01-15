@@ -15,6 +15,8 @@ public class Wall {
      */
     public int y;
 
+    public Map map;
+
     /**
      * Konstruktor klasy ściany
      *
@@ -24,6 +26,7 @@ public class Wall {
     public Wall(int x, int y) {
         this.x = x;
         this.y = y;
+        GamePanel.map.toTake(this.x, this.y);
     }
 
     /**
@@ -39,4 +42,6 @@ public class Wall {
     public int getY() {
         return this.y;
     }
+
+
 }
