@@ -6,14 +6,14 @@ package CleanPackage;
  * @author Bartosz Nysztal
  */
 public class TrashGlassBottle extends Trash {
-    
+
     /**
      * Konstruktor klasy odpadu - szklana butelka
      *
      * @param x pozycja oś x
      * @param y pozycja oś y
      */
-    public TrashGlassBottle(int x, int y) {
-        super(x,y);
+    public TrashGlassBottle() {
+        super();
     }
 }

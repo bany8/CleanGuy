@@ -87,4 +87,8 @@ public class Character {
             this.y += 64;
         }
     }
+    public void putXY(int x, int y){
+        this.x=x;
+        this.y=y;
+    }
 }

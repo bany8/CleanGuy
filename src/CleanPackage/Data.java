@@ -9,8 +9,6 @@ public class Data {
      * Zmienna pomocnicza określająca początkowy czas gry
      */
     public static long startTime;
-    /**  Liczba poziomów gry   */
-    public final static long NO_LEVELS=2;
     /**  Zmienna stanu określającam czy jest przerwa w grze   */
     public static boolean pause=false;
     /**  Zmienna stanu określającam czy jest przerwa w grze   */
@@ -20,10 +18,12 @@ public class Data {
     /** Zmienna pomocnicza określająca czas ukończenia aktualnego poziomu */
     public static double levelTime;
     /** Zmienna pomocnicza określająca status ukończenia gry */
-    public static int endGame=0;
-    /**
-     * Obrazy
-     */
+    public static int endGamePoints=0;
+    /** Czas gry na danym poziomie*/
+    public static double time;
+    public static int level = 1;
+
+
     public static Image bgImage;
     public static Image characterImage;
     public static Image wallImage;
@@ -51,6 +51,18 @@ public class Data {
         pauseImage = loadImage("img/pauza.png");
         menuImage = loadImage("img/menu.png");
     }//koniec loadInitialImages()
+
+    public void reset(){
+        endGamePoints=0;
+        time=0.0;
+    }//reset()
+    /**
+     * Zeruj licznę punktów
+     */
+    public static void resetPoints(){
+        endGamePoints=0;
+    }//resetPoints()
+
 
     /**
      * Metoda pobierania obiektu klasy Image na podstawie ścieżki

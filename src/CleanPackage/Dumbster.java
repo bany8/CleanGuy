@@ -22,13 +22,10 @@ public class Dumbster {
 
     /**
      * Konstruktor klasy śmietnika
-     *
-     * @param x pozycja oś x
-     * @param y pozycja oś y
+
      */
-    public Dumbster(int x, int y, String color) {
-        this.x = x;
-        this.y = y;
+    public Dumbster(String color) {
+
         this.color = color;
     }
 
@@ -44,5 +41,15 @@ public class Dumbster {
      */
     public int getY() {
         return this.y;
+    }
+    public void putXY() {
+      int a;
+      int b;
+        a=getRandomNumber();
+        if(GamePanel.map.isTaken(a,b))
+        GamePanel.map.toTake(x, y);
+    }
+    public int getRandomNumber() {
+        return (int) ((Math.random() * (15 - 15)) + 15);
     }
 }

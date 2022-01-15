@@ -27,6 +27,9 @@ public class Map {
     public boolean isTaken(int x, int y) {
         return this.boxWall[x / 80][y / 64];
     }
+    public void toEmpty(int x,int y) {
+        this.boxWall[x/80][y/64]=false;
+    }
 
     public void toTake(int x, int y) {
         this.boxWall[x/80][y/64]=true;
@@ -36,6 +39,9 @@ public class Map {
         return this.boxEquipment[x / 80];
     }
 
+    public void toEmptyEquipment(int x) {
+        this.boxEquipment[x/80]=false;
+    }
     public void toTakeEquipment(int x) {
         this.boxEquipment[x/80]=true;
     }

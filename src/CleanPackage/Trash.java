@@ -23,12 +23,9 @@ public class Trash {
     /**
      * Konstruktor klasy odpadu - szklana butelka
      *
-     * @param x pozycja oś x
-     * @param y pozycja oś y
      */
-    public Trash(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Trash() {
+
     }
 
     /**
@@ -48,16 +45,13 @@ public class Trash {
     /**
      * Metoda zmian współrzędnej x odpadu - szklana butelka
      */
-    public void putX(int x) {
-        this.x = x;
+    public void putXY(int x,int y) {
+        if(GamePanel.map.isTaken(x,y)) {
+            this.x = x;
+            this.y = y;
+        }
     }
 
-    /**
-     * Metoda zmiany współrzędnej y odpadu - szklana butelka
-     */
-    public void putY(int y) {
-        this.y = y;
-    }
 
     /**
      * Metoda zmiany współrzędnych x i y odpadu - szklana butelka

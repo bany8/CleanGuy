@@ -12,7 +12,7 @@ public class TrashBanana extends Trash {
      * @param x pozycja oś x
      * @param y pozycja oś y
      */
-    public TrashBanana(int x, int y) {
-        super(x,y);
+    public TrashBanana() {
+        super();
     }
 }

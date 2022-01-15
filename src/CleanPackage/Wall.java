@@ -17,13 +17,8 @@ public class Wall {
 
     /**
      * Konstruktor klasy ściany
-     *
-     * @param x pozycja oś x
-     * @param y pozycja oś y
      */
-    public Wall(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Wall() {
         GamePanel.map.toTake(this.x, this.y);
     }
 
@@ -44,28 +39,46 @@ public class Wall {
     /**
      * Metoda podania współrzędnych xy ściany
      */
-    public void putXY(int x ,int y) {
-        this.x=x;
-        this.y=y;
-        GamePanel.map.toTake(x,y);
+    public void putXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+        GamePanel.map.toTake(x, y);
     }
 
-    public boolean table[][]={
-                {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
-            {true,false,false,true,false,false,false,false,false,false,false,false,true,false,true,true},
-            {true,true,false,true,false,true,true,false,true,false,true,false,false,false,true,true},
-            {true,false,false,false,false,true,false,false,true,false,true,true,false,true,true,true},
-            {true,false,true,true,true,true,false,true,true,false,false,true,false,false,true,true},
-            {true,true,true,false,false,true,false,false,true,false,true,true,true,true,true,true},
-            {true,false,true,true,false,true,false,false,false,false,true,false,false,false,true,true},
-            {true,false,false,false,false,false,false,true,true,false,true,false,true,false,true,true},
-            {true,false,true,false,true,true,false,false,false,false,false,false,true,false,true,true},
-            {true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true},
-            {true,false,false,false,false,true,false,false,true,false,false,false,false,false,true,true},
-            {true,true,true,true,true,true,false,true,true,true,true,false,true,false,true,true},
-            {true,true,false,false,false,false,false,false,false,false,false,false,true,false,true,true},
-            {true,true,true,true,false,true,true,false,true,true,true,false,true,false,true,true},
-            {true,false,false,false,false,false,true,false,true,false,false,false,true,false,true,true},
-                {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true}
-        };
+    public boolean table1[][] = {
+            {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
+            {true, false, false, true, false, false, false, false, false, false, false, false, true, false, true, true},
+            {true, true, false, true, false, true, true, false, true, false, true, false, false, false, true, true},
+            {true, false, false, false, false, true, false, false, true, false, true, true, false, true, true, true},
+            {true, false, true, true, true, true, false, true, true, false, false, true, false, false, true, true},
+            {true, true, true, false, false, true, false, false, true, false, true, true, true, true, true, true},
+            {true, false, true, true, false, true, false, false, false, false, true, false, false, false, true, true},
+            {true, false, false, false, false, false, false, true, true, false, true, false, true, false, true, true},
+            {true, false, true, false, true, true, false, false, false, false, false, false, true, false, true, true},
+            {true, false, true, true, false, true, false, true, true, true, true, true, true, true, true, true},
+            {true, false, false, false, false, true, false, false, true, false, false, false, false, false, true, true},
+            {true, true, true, true, true, true, false, true, true, true, true, false, true, false, true, true},
+            {true, true, false, false, false, false, false, false, false, false, false, false, true, false, true, true},
+            {true, true, true, true, false, true, true, false, true, true, true, false, true, false, true, true},
+            {true, false, false, false, false, false, true, false, true, false, false, false, true, false, true, true},
+            {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true}
+    };
+    public boolean table2[][] = {
+            {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
+            {true, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true},
+            {true, false, true, true, true, true, true, false, true, true, true, true, true, false, true, true},
+            {true, false, true, false, false, false, false, false, false, false, false, false, true, false, true, true},
+            {true, false, true, false, true, true, true, false, true, true, true, false, true, false, true, true},
+            {true, false, true, false, true, false, false, false, false, false, true, false, true, false, true, true},
+            {true, false, true, false, true, false, true, true,true, false, true, false, true, false, true, true},
+            {true, false, false, false, false, false, true, false, false, false, false, false, false, false, true, true},
+            {true, false, false, false, false, false, true, false, true, false, false, false, false, false, true, true},
+            {true, false, true, false, true, false, true, true,true, false, true, false, true, false, true, true},
+            {true, false, true, false, true, false, false, false, false, false, true, false, true, false, true, true},
+            {true, false, true, false, true, true, true, false, true, true, true, false, true, false, true, true},
+            {true, false, true, false, false, false, false, false, false, false, false, false, true, false, true, true},
+            {true, false, true, true, true, true, true, false, true, true, true, true, true, false, true, true},
+            {true, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true},
+            {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true}
+    };
 }

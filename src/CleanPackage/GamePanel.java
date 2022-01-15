@@ -21,14 +21,20 @@ public class GamePanel extends JPanel {
     /**
      * Wysokość pola graficznego gry
      */
-    /** Obiekt reprezentujący status gry*/
+    /**
+     * Obiekt reprezentujący status gry
+     */
     public GameStatus gameStatus;
     public int sHeight;
     public Pause pause;
     public Menu menu;
-    /** Czcionki stosowane w pasku Menu*/
+    /**
+     * Czcionki stosowane w pasku Menu
+     */
     public Font menuFont;
-    /** Czcionki stosowane jako alert w polu gry*/
+    /**
+     * Czcionki stosowane jako alert w polu gry
+     */
     public Font alertFont;
 
     public KeyAdapter keyAdapter;
@@ -51,9 +57,9 @@ public class GamePanel extends JPanel {
      * @param height Wysokość pola graficznego gry
      */
     public GamePanel(int width, int height) {
-        gameStatus=new GameStatus();
-        menuFont=new Font("Dialog",Font.BOLD,36);
-        alertFont=new Font("Dialog",Font.BOLD,92);
+        gameStatus = new GameStatus();
+        menuFont = new Font("Dialog", Font.BOLD, 36);
+        alertFont = new Font("Dialog", Font.BOLD, 92);
         setFocusable(true);
         requestFocusInWindow();
         this.sWidth = width;
@@ -62,29 +68,24 @@ public class GamePanel extends JPanel {
         map = new Map();
         pause = new Pause(14 * 80, 15 * 64);
         menu = new Menu(15 * 80, 15 * 64);
-        trashBanana = new TrashBanana(4 * 80, 1 * 64);
-        trashGlassBottle = new TrashGlassBottle(10 * 80, 9 * 64);
+        trashBanana = new TrashBanana();
+        trashGlassBottle = new TrashGlassBottle();
         dumbster = new Dumbster[5];
-        dumbster[0] = new Dumbster(1 * 80, 1 * 64, "green");
-        dumbster[1] = new Dumbster(14 * 80, 1 * 64, "black");
-        dumbster[2] = new Dumbster(5 * 80, 7 * 64, "blue");
-        dumbster[3] = new Dumbster(1 * 80, 13 * 64, "yellow");
-        dumbster[4] = new Dumbster(14 * 80, 13 * 64, "brown");
+        dumbster[0] = new Dumbster("green");
+        dumbster[1] = new Dumbster( "black");
+        dumbster[2] = new Dumbster("blue");
+        dumbster[3] = new Dumbster("yellow");
+        dumbster[4] = new Dumbster( "brown");
         character = new Character(5 * 80, 6 * 64);
         wall = new Wall[16][15];
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 15; j++) {
-                wall[i][j] = new Wall(0, 0);
-            }
-        }
-        for (int i = 0; i < 16; i++) {
-            for (int j = 0; j < 15; j++) {
-                if (wall[0][0].table[i][j]) {
-                    wall[i][j].putXY(i * 80, j * 64);
-                }
+                wall[i][j] = new Wall();
             }
         }
 
+
+        restartGame();
 
         /* Dodaj obsługę zdarzeń - wciśnięcie strzałki*/
         addKeyListener(new KeyAdapter() {
@@ -107,17 +108,35 @@ public class GamePanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                if(Data.menu && me.getX()>470 && me.getX()<720 && me.getY()>585 && me.getY()<620){
-                        System.exit(1);
-                }
-                if(Data.menu && me.getX()>470 && me.getX()<685 && me.getY()>485 && me.getY()<520){
-
-                }
-                if(Data.menu && me.getX()>470 && me.getX()<835 && me.getY()>385 && me.getY()<420){
-
-                }
-                if(Data.endGame == 2 && me.getX()>470 && me.getX()<720 && me.getY()>665 && me.getY()<700){
+                if (Data.menu && me.getX() > 470 && me.getX() < 720 && me.getY() > 585 && me.getY() < 620) {
                     System.exit(1);
+                }
+                if (Data.menu && me.getX() > 470 && me.getX() < 685 && me.getY() > 485 && me.getY() < 520) {
+                    Data.level = 1;
+                    Data.menu = false;
+                    restartGame();
+                }
+                if (Data.menu && me.getX() > 470 && me.getX() < 835 && me.getY() > 385 && me.getY() < 420) {
+                    if (Data.level == 1) {
+                        Data.level = 2;
+                        Data.menu = false;
+                    } else if (Data.level==2){
+                        Data.level = 1;
+                        Data.menu = false;
+                    }
+                    restartGame();
+                }
+                if (Data.endGamePoints == 2 && me.getX() > 470 && me.getX() < 720 && me.getY() > 665 && me.getY() < 700) {
+                    Data.level = 1;
+                    restartGame();
+                }
+                if (Data.endGamePoints == 2 && me.getX() > 470 && me.getX() < 720 && me.getY() > 565 && me.getY() < 600) {
+                    if (Data.level == 1) {
+                        Data.level = 2;
+                    } else if (Data.level==2){
+                        Data.level = 1;
+                    }
+                    restartGame();
                 }
                 if (me.getX() < trashBanana.getX() + 80 && me.getX() > trashBanana.getX()
                         && me.getY() < trashBanana.getY() + 64 && me.getY() > trashBanana.getY()
@@ -142,30 +161,30 @@ public class GamePanel extends JPanel {
                             && me.getY() < trashGlassBottle.getY() + 64 && me.getY() > trashGlassBottle.getY()
                             && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
                             && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81
-                            && (5*80 == trashGlassBottle.getX() || 6*80 == trashGlassBottle.getX() || 7*80 == trashGlassBottle.getX()
-                            || 8*80 == trashGlassBottle.getX() || 9*80 == trashGlassBottle.getX() || 10*80 == trashGlassBottle.getX()
-                            || 11*80 == trashGlassBottle.getX()) && trashGlassBottle.getY() == 15*64) {
+                            && (5 * 80 == trashGlassBottle.getX() || 6 * 80 == trashGlassBottle.getX() || 7 * 80 == trashGlassBottle.getX()
+                            || 8 * 80 == trashGlassBottle.getX() || 9 * 80 == trashGlassBottle.getX() || 10 * 80 == trashGlassBottle.getX()
+                            || 11 * 80 == trashGlassBottle.getX()) && trashGlassBottle.getY() == 15 * 64) {
                         if (dumbster[i].color == "yellow") {
                             trashGlassBottle.moveToEquipment(0, 0);
-                            Data.endGame++;
+                            Data.endGamePoints++;
                         } else {
                             trashGlassBottle.throwAway(0, 0);
-                            Data.endGame++;
+                            Data.endGamePoints++;
                         }
                     }
                     if (me.getX() < trashBanana.getX() + 80 && me.getX() > trashBanana.getX()
                             && me.getY() < trashBanana.getY() + 64 && me.getY() > trashBanana.getY()
                             && character.getY() > dumbster[i].getY() - 65 && character.getY() < dumbster[i].getY() + 65
                             && character.getX() > dumbster[i].getX() - 81 && character.getX() < dumbster[i].getX() + 81
-                            && (5*80 == trashBanana.getX() || 6*80 == trashBanana.getX() || 7*80 == trashBanana.getX()
-                            || 8*80 == trashBanana.getX() || 9*80 == trashBanana.getX() || 10*80 == trashBanana.getX()
-                            || 11*80 == trashBanana.getX()) && trashBanana.getY() == 15*64) {
+                            && (5 * 80 == trashBanana.getX() || 6 * 80 == trashBanana.getX() || 7 * 80 == trashBanana.getX()
+                            || 8 * 80 == trashBanana.getX() || 9 * 80 == trashBanana.getX() || 10 * 80 == trashBanana.getX()
+                            || 11 * 80 == trashBanana.getX()) && trashBanana.getY() == 15 * 64) {
                         if (dumbster[i].color == "brown") {
                             trashBanana.moveToEquipment(0, 0);
-                            Data.endGame++;
-                        }else {
+                            Data.endGamePoints++;
+                        } else {
                             trashBanana.throwAway(0, 0);
-                            Data.endGame++;
+                            Data.endGamePoints++;
                         }
                     }
                     if (me.getX() < pause.getX() + 80 && me.getX() > pause.getX()
@@ -223,27 +242,76 @@ public class GamePanel extends JPanel {
         g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
 
 
-        if(Data.pause){
-            g.setColor(new Color(50,30,0));
+        if (Data.pause) {
+            g.setColor(new Color(50, 30, 0));
             g.fillRect(300, 300, 680, 424);
             g.setColor(Color.white);
             g.setFont(menuFont);
-            g.drawString("GRA ZATRZYMANA",470,520);
-        } else if(Data.menu){
-            g.setColor(new Color(50,30,0));
+            g.drawString("GRA ZATRZYMANA", 470, 520);
+        } else if (Data.menu) {
+            g.setColor(new Color(50, 30, 0));
             g.fillRect(300, 300, 680, 424);
             g.setColor(Color.white);
             g.setFont(menuFont);
-            g.drawString("NASTEPNY POZIOM",470,420);
-            g.drawString("NOWA GRA",470,520);
-            g.drawString("KONIEC GRY",470,620);
+            g.drawString("NASTEPNY POZIOM", 470, 420);
+            g.drawString("NOWA GRA", 470, 520);
+            g.drawString("KONIEC GRY", 470, 620);
         }
-        if(Data.endGame == 2){
-            g.setColor(new Color(50,30,0));
+        if (Data.endGamePoints == 2) {
+            DecimalFormat df = new DecimalFormat("#.##");
+            g.setColor(new Color(50, 30, 0));
             g.fillRect(300, 300, 680, 424);
             g.setColor(Color.white);
             g.setFont(menuFont);
-            g.drawString("GRAJ OD NOWA",400,700);
+            g.drawString("WYGRANA !!! czas:" + df.format(Data.time) + "s", 400, 400);
+            g.drawString("NASTEPNY POZIOM", 400, 600);
+            g.drawString("GRAJ OD NOWA", 400, 700);
         }
+    }
+
+    public void restartGame() {
+        Data.endGamePoints = 0;
+        Data.resetPoints();
+        if (Data.level == 1) {
+            trashBanana.putXY(4 * 80, 1 * 64);
+            trashGlassBottle.putXY(3 * 80, 3 * 64);
+            for (int i = 0; i < 16; i++) {
+                for (int j = 0; j < 15; j++) {
+                    wall[i][j].putXY(0, 0);
+                    if (wall[0][0].table1[i][j]) {
+                        wall[i][j].putXY(i * 80, j * 64);
+                    }
+                }
+            }
+            for (int i = 0; i<5;i++){
+                dumbster[i].putXY();
+            }
+        } else if (Data.level==2){
+
+            trashBanana.putXY(getRandomNumber()*80, getRandomNumber()*64);
+            trashGlassBottle.putXY(6 * 80, 6 * 64);
+            for (int i = 0; i < 16; i++) {
+                for (int j = 0; j < 15; j++) {
+                    wall[i][j].putXY(0, 0);
+                    if (wall[0][0].table2[i][j]) {
+                        wall[i][j].putXY(i * 80, j * 64);
+                    }
+                }
+            }
+        }
+        for (int i =0; i<16 ;i++){
+            map.toEmptyEquipment(i*80);
+        }
+        for (int i =0; i<16 ;i++){
+            for (int j = 0 ; j<16;j++) {
+                map.toEmptyEquipment(i * 80);
+                map.toEmpty(0,0);
+            }
+        }
+        character.putXY(5 * 80, 6 * 64);
+        Data.startTime = System.currentTimeMillis();
+    }
+    public int getRandomNumber() {
+        return (int) ((Math.random() * (15 - 15)) + 15);
     }
 }
