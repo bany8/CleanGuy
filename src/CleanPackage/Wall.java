@@ -43,5 +43,14 @@ public class Wall {
         return this.y;
     }
 
+    /**
+     * Metoda podania współrzędnych xy ściany
+     */
+    public void putXY(int x ,int y) {
+        this.x=x;
+        this.y=y;
+        GamePanel.map.toTake(x,y);
+    }
+
 
 }

@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
      * Obiekt pierwszego planu
      */
     private Character character;
-    private Wall wall;
+    private Wall[][] wall;
     private Dumbster[] dumbster;
     private TrashBanana trashBanana;
     private TrashGlassBottle trashGlassBottle;
@@ -57,7 +57,22 @@ public class GamePanel extends JPanel {
         dumbster[3] = new Dumbster(1*80, 13*64, "yellow");
         dumbster[4] = new Dumbster(14*80, 13*64, "brown");
         character = new Character(5*80, 6*64);
-        wall = new Wall(13*80,14*64);
+        wall = new Wall[16][15];
+        for (int i =0 ; i < 16; i++){
+            for (int j = 0 ; j < 15; j++){
+                wall[i][j] = new Wall(0,0);
+            }
+        }
+        for (int i =0 ; i < 16; i++){
+            for (int j = 0 ; j < 15; j+=14){
+                wall[i][j].putXY(i*80,j*64);
+            }
+        }
+        for (int i =0 ; i < 16; i+=15){
+            for (int j = 0 ; j < 15; j++){
+                wall[i][j].putXY(i*80,j*64);
+            }
+        }
 
         /* Dodaj obsługę zdarzeń - wciśnięcie strzałki*/
         addKeyListener(new KeyAdapter() {
@@ -125,7 +140,12 @@ public class GamePanel extends JPanel {
                 g.drawImage(Data.brownDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
             }
         }
-        g.drawImage(Data.wallImage, wall.getX(), wall.getY(), null);
+        for (int i =0 ; i < 16; i++){
+            for (int j = 0 ; j < 15; j++){
+                g.drawImage(Data.wallImage, wall[i][j].getX(), wall[i][j].getY(), null);
+            }
+        }
+
         g.drawImage(Data.characterImage, character.getX(), character.getY(), null);
     }
 }
