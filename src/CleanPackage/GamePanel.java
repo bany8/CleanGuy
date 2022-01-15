@@ -48,8 +48,8 @@ public class GamePanel extends JPanel {
         this.sHeight = height;
 
         map = new Map();
-        trashBanana = new TrashBanana(6*80, 5*64);
-        trashGlassBottle = new TrashGlassBottle(4*80, 7*64);
+        trashBanana = new TrashBanana(4*80, 1*64);
+        trashGlassBottle = new TrashGlassBottle(10*80, 9*64);
         dumbster = new Dumbster[5];
         dumbster[0] = new Dumbster(1*80, 1*64, "green");
         dumbster[1] = new Dumbster(14*80, 1*64, "black");
@@ -64,15 +64,13 @@ public class GamePanel extends JPanel {
             }
         }
         for (int i =0 ; i < 16; i++){
-            for (int j = 0 ; j < 15; j+=14){
-                wall[i][j].putXY(i*80,j*64);
-            }
-        }
-        for (int i =0 ; i < 16; i+=15){
             for (int j = 0 ; j < 15; j++){
-                wall[i][j].putXY(i*80,j*64);
+                if(wall[0][0].table[i][j]){
+                    wall[i][j].putXY(i*80,j*64);
+                }
             }
         }
+
 
         /* Dodaj obsługę zdarzeń - wciśnięcie strzałki*/
         addKeyListener(new KeyAdapter() {
