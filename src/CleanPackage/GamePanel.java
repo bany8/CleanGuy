@@ -72,10 +72,10 @@ public class GamePanel extends JPanel {
         trashGlassBottle = new TrashGlassBottle();
         dumbster = new Dumbster[5];
         dumbster[0] = new Dumbster("green");
-        dumbster[1] = new Dumbster( "black");
+        dumbster[1] = new Dumbster("black");
         dumbster[2] = new Dumbster("blue");
         dumbster[3] = new Dumbster("yellow");
-        dumbster[4] = new Dumbster( "brown");
+        dumbster[4] = new Dumbster("brown");
         character = new Character(5 * 80, 6 * 64);
         wall = new Wall[16][15];
         for (int i = 0; i < 16; i++) {
@@ -120,7 +120,7 @@ public class GamePanel extends JPanel {
                     if (Data.level == 1) {
                         Data.level = 2;
                         Data.menu = false;
-                    } else if (Data.level==2){
+                    } else if (Data.level == 2) {
                         Data.level = 1;
                         Data.menu = false;
                     }
@@ -133,7 +133,7 @@ public class GamePanel extends JPanel {
                 if (Data.endGamePoints == 2 && me.getX() > 470 && me.getX() < 720 && me.getY() > 565 && me.getY() < 600) {
                     if (Data.level == 1) {
                         Data.level = 2;
-                    } else if (Data.level==2){
+                    } else if (Data.level == 2) {
                         Data.level = 1;
                     }
                     restartGame();
@@ -234,6 +234,8 @@ public class GamePanel extends JPanel {
                 g.drawImage(Data.brownDumbsterImage, dumbster[i].getX(), dumbster[i].getY(), null);
             }
         }
+        g.drawImage(Data.trashBananaImage, trashBanana.getX(), trashBanana.getY(), null);
+        g.drawImage(Data.trashGlassBottleImage, trashGlassBottle.getX(), trashGlassBottle.getY(), null);
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 15; j++) {
                 g.drawImage(Data.wallImage, wall[i][j].getX(), wall[i][j].getY(), null);
@@ -273,45 +275,51 @@ public class GamePanel extends JPanel {
         Data.endGamePoints = 0;
         Data.resetPoints();
         if (Data.level == 1) {
-            trashBanana.putXY(4 * 80, 1 * 64);
-            trashGlassBottle.putXY(3 * 80, 3 * 64);
             for (int i = 0; i < 16; i++) {
                 for (int j = 0; j < 15; j++) {
                     wall[i][j].putXY(0, 0);
+                    map.toEmpty(i*80,j*64);
                     if (wall[0][0].table1[i][j]) {
                         wall[i][j].putXY(i * 80, j * 64);
                     }
                 }
             }
-            for (int i = 0; i<5;i++){
-                dumbster[i].putXY();
-            }
-        } else if (Data.level==2){
+            dumbster[0].putXY(1 * 80, 1 * 64);
+            dumbster[1].putXY(14 * 80, 13 * 64);
+            dumbster[2].putXY(1 * 80, 13 * 64);
+            dumbster[3].putXY(14 * 80, 1 * 64);
+            dumbster[4].putXY(5 * 80, 7 * 64);
+            trashBanana.randomAppear();
+            trashGlassBottle.randomAppear();
+        } else if (Data.level == 2) {
 
-            trashBanana.putXY(getRandomNumber()*80, getRandomNumber()*64);
-            trashGlassBottle.putXY(6 * 80, 6 * 64);
             for (int i = 0; i < 16; i++) {
                 for (int j = 0; j < 15; j++) {
                     wall[i][j].putXY(0, 0);
+                    map.toEmpty(i * 80, j * 64);
                     if (wall[0][0].table2[i][j]) {
                         wall[i][j].putXY(i * 80, j * 64);
                     }
                 }
             }
+            dumbster[0].putXY(2 * 80, 7 * 64);
+            dumbster[1].putXY(12 * 80, 3 * 64);
+            dumbster[2].putXY(13 * 80, 7 * 64);
+            dumbster[3].putXY(5 * 80, 11 * 64);
+            dumbster[4].putXY(8 * 80, 7 * 64);
+            trashBanana.randomAppear();
+            trashGlassBottle.randomAppear();
         }
-        for (int i =0; i<16 ;i++){
-            map.toEmptyEquipment(i*80);
+        for (int i = 0; i < 16; i++) {
+            map.toEmptyEquipment(i * 80);
         }
-        for (int i =0; i<16 ;i++){
-            for (int j = 0 ; j<16;j++) {
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
                 map.toEmptyEquipment(i * 80);
-                map.toEmpty(0,0);
+                map.toEmpty(0, 0);
             }
         }
         character.putXY(5 * 80, 6 * 64);
         Data.startTime = System.currentTimeMillis();
-    }
-    public int getRandomNumber() {
-        return (int) ((Math.random() * (15 - 15)) + 15);
     }
 }

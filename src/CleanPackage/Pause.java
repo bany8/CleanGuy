@@ -40,7 +40,7 @@ public class Pause {
         return this.y;
     }
 
-    public void pauseGame(){
+    public void pauseGame() {
         Data.pause = !Data.pause;
     }
 }

@@ -9,17 +9,29 @@ public class Data {
      * Zmienna pomocnicza określająca początkowy czas gry
      */
     public static long startTime;
-    /**  Zmienna stanu określającam czy jest przerwa w grze   */
-    public static boolean pause=false;
-    /**  Zmienna stanu określającam czy jest przerwa w grze   */
-    public static boolean menu=false;
-    /** Zmienna stanu określająca czy wybrano menu*/
-    public static boolean levelPause=false;
-    /** Zmienna pomocnicza określająca czas ukończenia aktualnego poziomu */
+    /**
+     * Zmienna stanu określającam czy jest przerwa w grze
+     */
+    public static boolean pause = false;
+    /**
+     * Zmienna stanu określającam czy jest przerwa w grze
+     */
+    public static boolean menu = false;
+    /**
+     * Zmienna stanu określająca czy wybrano menu
+     */
+    public static boolean levelPause = false;
+    /**
+     * Zmienna pomocnicza określająca czas ukończenia aktualnego poziomu
+     */
     public static double levelTime;
-    /** Zmienna pomocnicza określająca status ukończenia gry */
-    public static int endGamePoints=0;
-    /** Czas gry na danym poziomie*/
+    /**
+     * Zmienna pomocnicza określająca status ukończenia gry
+     */
+    public static int endGamePoints = 0;
+    /**
+     * Czas gry na danym poziomie
+     */
     public static double time;
     public static int level = 1;
 
@@ -52,15 +64,16 @@ public class Data {
         menuImage = loadImage("img/menu.png");
     }//koniec loadInitialImages()
 
-    public void reset(){
-        endGamePoints=0;
-        time=0.0;
+    public void reset() {
+        endGamePoints = 0;
+        time = 0.0;
     }//reset()
+
     /**
      * Zeruj licznę punktów
      */
-    public static void resetPoints(){
-        endGamePoints=0;
+    public static void resetPoints() {
+        endGamePoints = 0;
     }//resetPoints()
 
 
