@@ -9,6 +9,9 @@ public class Data {
      * Zmienna pomocnicza określająca początkowy czas gry
      */
     public static long startTime;
+    public static long stopTime;
+    public static long pauseTime;
+    public static long timePaused;
     /**
      * Zmienna stanu określającam czy jest przerwa w grze
      */
@@ -18,29 +21,34 @@ public class Data {
      */
     public static boolean menu = false;
     /**
-     * Zmienna stanu określająca czy wybrano menu
-     */
-    public static boolean levelPause = false;
-    /**
-     * Zmienna pomocnicza określająca czas ukończenia aktualnego poziomu
-     */
-    public static double levelTime;
-    /**
      * Zmienna pomocnicza określająca status ukończenia gry
      */
     public static int endGamePoints = 0;
     /**
      * Czas gry na danym poziomie
      */
+    public static int points = 0;
+    /**
+     * Czas gry na danym poziomie
+     */
     public static double time;
     public static int level = 1;
-
 
     public static Image bgImage;
     public static Image characterImage;
     public static Image wallImage;
     public static Image trashBananaImage;
     public static Image trashGlassBottleImage;
+    public static Image trashNewspaperImage;
+    public static Image trashAppleImage;
+    public static Image trashEggImage;
+    public static Image trashCapImage;
+    public static Image trashCardboardImage;
+    public static Image trashMilkImage;
+    public static Image trashSmokeImage;
+    public static Image trashDiaperImage;
+    public static Image trashCanImage;
+    public static Image trashJarImage;
     public static Image greenDumbsterImage;
     public static Image blueDumbsterImage;
     public static Image yellowDumbsterImage;
@@ -53,8 +61,20 @@ public class Data {
         bgImage = loadImage("img/tlo.png");
         characterImage = loadImage("img/ludzik.png");
         wallImage = loadImage("img/siano.png");
+
         trashBananaImage = loadImage("img/banan.png");
         trashGlassBottleImage = loadImage("img/butelka_szklo.png");
+        trashNewspaperImage = loadImage("img/gazeta.png");
+        trashAppleImage = loadImage("img/jablko.png");
+        trashEggImage = loadImage("img/jajko.png");
+        trashCapImage = loadImage("img/kapsel.png");
+        trashCardboardImage = loadImage("img/karton.png");
+        trashMilkImage = loadImage("img/Mleko.png");
+        trashSmokeImage = loadImage("img/pet.png");
+        trashDiaperImage = loadImage("img/pielucha.png");
+        trashCanImage = loadImage("img/puszka.png");
+        trashJarImage = loadImage("img/sloik.png");
+
         brownDumbsterImage = loadImage("img/kosz_brazowy.png");
         blackDumbsterImage = loadImage("img/kosz_czarny.png");
         yellowDumbsterImage = loadImage("img/kosz_zolty.png");
@@ -64,17 +84,15 @@ public class Data {
         menuImage = loadImage("img/menu.png");
     }//koniec loadInitialImages()
 
-    public void reset() {
+    public static void reset() {
         endGamePoints = 0;
+        points =0;
         time = 0.0;
-    }//reset()
-
-    /**
-     * Zeruj licznę punktów
-     */
-    public static void resetPoints() {
+        startTime=System.currentTimeMillis();
+        stopTime=0;
+        pauseTime=0;
         endGamePoints = 0;
-    }//resetPoints()
+    }//reset()
 
 
     /**

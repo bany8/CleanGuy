@@ -1,9 +1,10 @@
+
 package CleanPackage;
 
 import java.awt.Toolkit;
 
 /**
- * Prosta gra (bez optymalizacji)
+ * Prosta gra (bez optymalizacji) jako przykład aplikacji interaktywnej
  *
  * @author Bartosz Nysztal
  */
@@ -11,7 +12,7 @@ public class CleanGuy {
 
     /**
      * Metoda uruchamia grę. Najpierw pobierane są parametry ekranu
-     * i po ustaleniu rozmiaru gry (1024/768) obliczany jest punkt (x,y)
+     * i po ustaleniu rozmiaru gry (1280/1024) obliczany jest punkt (x,y)
      * górnego, lewego narożnika panelu gry tak, aby pole gry było wyśrodkowane
      * na ekranie.
      */

@@ -1,4 +1,7 @@
-package CleanPackage;
+package CleanPackage.Trash;
+
+import CleanPackage.Data;
+import CleanPackage.GamePanel;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -19,12 +22,15 @@ public class Trash {
      * Współrzędna y obiektu
      */
     public int y;
+    public String name;
+    public boolean goodOrBad;
+
 
     /**
      * Konstruktor klasy odpadu - szklana butelka
      */
-    public Trash() {
-
+    public Trash(String name) {
+        this.name=name;
     }
 
     /**
@@ -40,6 +46,13 @@ public class Trash {
     public int getY() {
         return this.y;
     }
+
+    public void putXY(int x, int y) {
+        this.x=x;
+        this.y=y;
+    }
+
+
 
 
     public void randomAppear() {
@@ -94,6 +107,8 @@ public class Trash {
             }
         }
     }
+
+
 
     /**
      * Funkcja odtwarzania dźwięku z pliku
