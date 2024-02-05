@@ -1,2 +1,2 @@
-# CleanGuy
-Projekt JPWP
+# CleanGuy game
+### Project for studies
