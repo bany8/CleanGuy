@@ -69,7 +69,7 @@ public class Data {
         trashEggImage = loadImage("img/jajko.png");
         trashCapImage = loadImage("img/kapsel.png");
         trashCardboardImage = loadImage("img/karton.png");
-        trashMilkImage = loadImage("img/Mleko.png");
+        trashMilkImage = loadImage("img/mleko.png");
         trashSmokeImage = loadImage("img/pet.png");
         trashDiaperImage = loadImage("img/pielucha.png");
         trashCanImage = loadImage("img/puszka.png");
